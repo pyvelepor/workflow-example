@@ -1,0 +1,13 @@
+stages:
+  scrape:
+    cmd: python .\pokemonshowdown.py scrape --format gen8ou --max-replays 10 --output-dir data
+    deps:
+    - .\pokemonshowdown.py
+    outs:
+    - data\replays\gen8ou\
+  extract:
+    cmd: python .\pokemonshowdown.py extract --max-replays 10 .\data\replays\gen8ou > data\matches\thingy.jsonl
+    deps:
+      - .\pokemonshowdown.py
+    outs:
+      - data\matches\thingy.jsonl

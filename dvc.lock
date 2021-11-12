@@ -1,0 +1,25 @@
+schema: '2.0'
+stages:
+  scrape:
+    cmd: python .\pokemonshowdown.py scrape --format gen8ou --max-replays 10 --output-dir
+      data
+    deps:
+    - path: .\pokemonshowdown.py
+      md5: 5e4535c771321f6ee552914f7adfc169
+      size: 4657
+    outs:
+    - path: data\replays\gen8ou\
+      md5: bd5dad2a74dc265e5e1306d0ede05f27.dir
+      size: 101657
+      nfiles: 1
+  extract:
+    cmd: python .\pokemonshowdown.py extract --max-replays 10 .\data\replays\gen8ou
+      > data\matches\thingy.jsonl
+    deps:
+    - path: .\pokemonshowdown.py
+      md5: 5e4535c771321f6ee552914f7adfc169
+      size: 4657
+    outs:
+    - path: data\matches\thingy.jsonl
+      md5: 9e7c1c2ddee0a51adbd7636a4736ae7f
+      size: 2384
